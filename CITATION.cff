@@ -1,0 +1,29 @@
+cff-version: 1.0.1
+message: Please cite this software using these metadata.
+# title: Sigla/Nome + descrição curta (até 80 caracteres)
+title: "SignTalk - Luva Tradutora de Libras"
+# abstract: Descrição completa do projeto (até 500 caracteres)
+abstract: "Um dispositivo wearable projetado para quebrar barreiras de comunicação. O SignTalk é uma luva inteligente capaz de captar os movimentos das mãos do usuário e traduzir gestos em Libras para texto e áudio em tempo real usando IA na Borda (TinyML)." 
+authors:
+  - family-names: Guimarães
+    given-names: Amanda Canizela
+  - family-names: Coelho
+    given-names: Ariel Inácio Jordão
+  - family-names: Pereira
+    given-names: Bernardo Rodrigues
+  - family-names: Ribeiro
+    given-names: David Nunes
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Rivero
+    given-names: Ilo Amy Saldanha
+keywords:
+  - Libras
+  - TinyML
+  - ESP32
+  - Wearables
+  - Acessibilidade
+repository-code: 
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2026-07-08

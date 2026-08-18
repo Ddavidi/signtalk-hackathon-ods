@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNTALK: Luva tradutora de Libras</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.5;
+            color: #000;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: justify;
+        }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        h3 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-indent: 30px;
+        }
+        .authors {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+        .abstract {
+            margin: 0 40px 30px 40px;
+            font-size: 14px;
+        }
+        .abstract-title {
+            font-weight: bold;
+            text-indent: 0;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 40px;
+        }
+        li {
+            margin-bottom: 5px;
+            text-align: justify;
+        }
+        strong {
+            font-weight: bold;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            font-weight: bold;
+        }
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .image-caption {
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 5px;
+            text-indent: 0;
+        }
+        @media print {
+            body {
+                padding: 0;
+                font-size: 12pt;
+            }
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            p, ul, li {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>SIGNTALK: Luva tradutora de Libras</h1>
+
+    <div class="authors">
+        <p style="text-indent: 0; margin:0;"><strong>Integrantes:</strong> Amanda Canizela Guimarães, Ariel Inácio Jordão Coelho, Bernardo Rodrigues Pereira, David Nunes Ribeiro</p>
+        <p style="text-indent: 0; margin:0;"><strong>Orientador:</strong> Prof. Ilo Amy Saldanha Rivero</p>
+        <p style="text-indent: 0; margin:0;">Belo Horizonte, 2026</p>
+        <p style="text-indent: 0; margin:0;">Pontifícia Universidade Católica de Minas Gerais - Curso de Engenharia de Computação – Sistemas Embarcados</p>
+    </div>
+
+    <div class="abstract">
+        <p class="abstract-title">Resumo</p>
+        <p style="text-indent: 0;">Este artigo apresenta o desenvolvimento do SignTalk, uma ferramenta em formato de luva (wearable), projetada para captar os movimentos das mãos e traduzir gestos da Língua Brasileira de Sinais (Libras) em texto e em áudio em tempo real. A arquitetura proposta é do tipo distribuída e sem fio, utilizando um microcontrolador compacto ESP32-C3 acoplado à luva (nó transmissor) para sensoriamento e um microcontrolador ESP32-S3 de alto desempenho atuando como base central de processamento (nó receptor). Os dados inerciais e de flexão são transmitidos via protocolo de rádio ESP-NOW com baixa latência. O grupo optou por utilizar Machine Learning para treinar o dispositivo, fazendo uso de ferramentas como (Edge Computing/TinyML) para tal. Ao longo do projeto, dificuldades como a calibração dinâmica de sensores e a mitigação de falhas elétricas e logísticas durante a transição da prototipagem, que serão discutidas ao longo do artigo. Portanto, apesar dos desafios, o objetivo do desenvolvimento da luva foi trazer maior conforto aos falantes de Libras e possibilitar uma comunicação fácil e rápida entre eles e os não falantes.</p>
+        <p style="text-indent: 0;"><strong>Palavras-chave:</strong> TinyML, Sistemas Embarcados, Libras, ESP32, ESP-NOW.</p>
+        <p class="abstract-title" style="margin-top: 20px;">Abstract</p>
+        <p style="text-indent: 0;">This article presents the development of SignTalk, a wearable glove designed to capture hand movements and translate Brazilian Sign Language (Libras) gestures into text and real-time audio. The proposed architecture is distributed and wireless, using a compact ESP32-C3 microcontroller attached to the glove (transmitter node) for sensing, and a high-performance ESP32-S3 microcontroller acting as the central processing base (receiver node). Inertial and flexion data are transmitted via the ESP-NOW radio protocol with low latency. The group chose to use Machine Learning to train the device, using Edge Computing/TinyML tools. Throughout the project, difficulties such as dynamic sensor calibration and the mitigation of electrical and logistical failures during the prototyping transition are discussed. Therefore, despite the challenges, the goal of developing the glove was to bring greater comfort to Libras speakers and enable easy and fast communication between them and non-speakers.</p>
+        <p style="text-indent: 0;"><strong>Keywords:</strong> TinyML, Embedded Systems, Libras, ESP32, ESP-NOW.</p>
+    </div>
+
+    <h2>1 Introdução e Objetivos</h2>
+    <p>A quebra de barreiras comunicacionais entre indivíduos surdos e ouvintes representa um dos maiores desafios sociais na contemporaneidade brasileira. Embora a Língua Brasileira de Sinais (Libras) seja o principal meio de comunicação dessa comunidade, a ampla maioria da população ouvinte não domina essa linguagem, gerando um cenário estigmatizado de exclusão. Projetos baseados em reconhecimento de gestos, como o apresentado pelo grupo, representam caminhos promissores na literatura de tecnologia assistiva, como demonstrado nos estudos de reconhecimento multissensorial estruturados pelo ecossistema WaveGlove [1].</p>
+    <p>O projeto SignTalk visa mitigar esse problema por meio do desenvolvimento de um sistema embarcado vestível, focado no processamento local de Inteligência Artificial (TinyML). Ao realizar as predições de forma offline na borda da rede (Edge Computing), elimina-se a dependência de conexões com a internet ou servidores externos, garantindo uma solução rápida e portátil. Ao longo de pesquisas, percebeu-se que, majoritariamente, esses dispositivos de inclusão são desenvolvidos com o uso de câmeras que captam movimento, o que limita aos usuários seu uso em ambientes não controlados. Dessa forma, o uso único e exclusivo de sensores e de microcontroladores permite maior liberdade no manuseio da tecnologia, visando melhorar a experiência dos consumidores.</p>
+    <p>Os objetivos específicos delineados para as etapas iniciais de desenvolvimento englobam:</p>
+    <ul>
+        <li>Validação e leitura independente de componentes sensores (flexão e inercial);</li>
+        <li>Estabelecimento de canal de comunicação sem fio estável e com latência imperceptível para o usuário;</li>
+        <li>Estruturação de uma placa definitiva para consolidação do hardware;</li>
+        <li>Desenvolvimento de uma esteira automatizada para coleta de dados seriais e treinamento de uma Rede Neural Profunda para classificação dos sinais de Libras.</li>
+    </ul>
+
+    <h2>2 Metodologia e Arquitetura do Sistema</h2>
+    <p>O diferencial do SignTalk está na divisão de responsabilidades de processamento através de uma topologia distribuída ponto a ponto, com o objetivo de melhorar a ergonomia da luva ao reduzir o peso de componentes eletrônicos montados diretamente sobre a mão do usuário, trazendo mais conforto a quem a utiliza.</p>
+
+    <h3>2.1 Nó Transmissor (A luva sensoriada)</h3>
+    <p>Na luva, encontra-se o microcontrolador <strong>ESP32-C3 Super Mini</strong>. Ele é o responsável por efetuar leituras contínuas dos seguintes transdutores e passar para o resto da ferramenta:</p>
+    <ul>
+        <li><strong>Sensores Flexíveis A12E-10X (5 por luva):</strong> Responsáveis por identificar a curvatura independente de cada um dos dedos através de circuitos divisores de tensão elétricos.</li>
+        <li><strong>1x Módulo MPU-6050 (GY-521):</strong> Conectada via barramento I&sup2;C dedicada (pinos SDA=8, SCL=9), responsável pela captura de aceleração linear tridimensional (X, Y, Z) e velocidade angular, permitindo o cálculo em tempo real da orientação espacial de inclinação da mão (Roll e Pitch).</li>
+    </ul>
+
+    <h3>2.2 Nó Receptor (A base central de processamento)</h3>
+    <p>Os dados coletados pelo nó transmissor são direcionados à base receptora central, gerenciada por um microcontrolador <strong>ESP32-S3</strong> (Dual-Core rodando a 240 MHz). O ESP32-S3 atua como o 'cérebro' do projeto, acumulando as informações recebidas e executando o algoritmo classificador localmente. Após a inferência da inteligência artificial, o nó receptor fornece dupla resposta de saída:</p>
+    <ol>
+        <li><strong>Visual:</strong> Através de um display de cristal líquido (LCD) ou OLED para exibição de texto;</li>
+        <li><strong>Sonora:</strong> Utilizando síntese de áudio digital baseada no barramento I&sup2;S acoplado a um módulo amplificador <strong>MAX98357A</strong> e a um alto-falante (speaker), reproduzindo de forma sonificada a letra ou palavra traduzida.</li>
+    </ol>
+
+    <h3>2.3 Protocolo de Comunicação Sem Fio</h3>
+    <p>Como já afirmado acima, para fazer a conexão dos dados brutos entre a luva e a base central, foi-se o protocolo de rede proprietário <strong>ESP-NOW</strong> da Espressif Systems, que dispensa pareamento tradicional do Wi-Fi convencional ou do Bluetooth, extinguindo a necessidade de roteadores intermediários, o que trouxe maior flexibilidade no uso da SignTalk. Essa abordagem assegura uma taxa de transmissão instantânea com latência desprezível. Todas as informações foram adicionadas na tabela abaixo, conforme detalhado na Seção 3.</p>
+    <div class="image-container">
+        <img src="../../Divulgacao/Fotos/signtalk_luvas.jpeg" alt="Protótipo físico do projeto SignTalk: luvas sensoriadas (ESP32-C3) e a base receptora (ESP32-S3).">
+        <p class="image-caption">Figura 1: Protótipo físico do projeto SignTalk: luvas sensoriadas (ESP32-C3) e a base receptora (ESP32-S3).</p>
+    </div>
+
+    <h2>3 Desenvolvimento da luva</h2>
+    <p>Para alimentar com confiabilidade o modelo matemático do TinyML, os dados precisam trafegar de forma limpa e padronizada entre os microcontroladores e o ambiente de desenvolvimento.</p>
+
+    <h3>3.1 Protocolo Rígido de Transmissão e Estrutura de Dados</h3>
+    <p>Para a amostragem do protótipo, foi feita a gravação do alfabeto letra por letra em padrões de, no mínimo 20 vezes, que depois foram unificadas utilizando um código em C/C++. O trecho abaixo demonstra como o processo foi enviado pelo transmissor e desempacotado pelo receptor:</p>
+<pre><code>struct DadosLuva {
+    int id_luva;           // 0 para mao direita, 1 para mao esquerda
+    int flex_polegar;      // Leitura analogica do ADC (0 a 4095)
+    int flex_indicador;
+    int flex_medio;
+    int flex_anelar;
+    int flex_minimo;
+    float acel_x;          // Dados brutos de aceleracao da IMU
+    float acel_y;
+    float acel_z;
+    float giro_x;          // Dados brutos de velocidade angular
+    float giro_y;
+    float giro_z;
+    float roll;            // Angulo calculado de inclinacao lateral
+    float pitch;           // Angulo calculado de inclinacao frontal
+};
+</code></pre>
+    <p class="image-caption">Código 1: Estrutura de dados unificada para o protocolo ESP-NOW em C++</p>
+
+    <h3>3.2 Ferramenta de Automação de Banco de Dados</h3>
+    <p>A coleta de amostras de gestos foi feita através de um programa sob medida na linguagem Python (<code>coleta_sign_talk.py</code>). Esse script conecta-se de forma serial (115200 baud rate) com o ESP32-S3, envia flags de comando como COLETA, introduz pausas programadas de 3 segundos para garantir estabilidade do movimento e confirmação do usuário e organiza automaticamente os fluxos de vetores recebidos em arquivos no formato Comma-Separated Values (<code>.csv</code>).</p>
+    <p>Posteriormente, esses conjuntos de arquivos <code>.csv</code> rotulados são enviados em lotes estruturados diretamente para a plataforma de Machine Learning em nuvem utilizando a interface de linha de comando oficial (<code>edge-impulse-uploader</code>). Por exemplo, todos os movimentos registrados como a letra A são colcados em um mesmo arquivo para fazer a pradronização do movimento.</p>
+
+    <h3>3.3 Calibração Dinâmica e Modelagem TinyML</h3>
+    <p>Para minizar inferências contra variações possíveis, como algum movimento brusco ou mudança de ideia do que sinalizar, ou desvios potenciais de tensão operacional gerados pelas descargas de baterias, o firmware do ESP32-C3 executa uma rotina de calibração ativa no instante em que é inicializado:</p>
+    <ol>
+        <li><strong>Mão Aberta:</strong> Gravação de limites mínimos lidos nos conversores analógico-digitais (ADC) de 12 bits;</li>
+        <li><strong>Mão Fechada:</strong> Gravação dos limites máximos de compressão.</li>
+    </ol>
+    <p>Esses dados de calibração colaboram para que o movimento realizado pelo usuário seja o mais correto possível, garantindo o êxito do projeto. Dentro do ecossistema <strong>Edge Impulse</strong>, extraem-se as características estruturais (<em>features</em>) em janelas de tempo fixas e treina-se uma Rede Neural Profunda de Classificação (Keras/TensorFlow Lite). Por fim, o compilador do Edge Impulse gera uma biblioteca leve e autônoma em formato C++ nativo que é embarcada no ESP32-S3, sendo executada em tempo real e de forma puramente offline por meio da rotina cíclica <code>run_classifier()</code>.</p>
+
+    <div class="image-container">
+        <img src="../../Divulgacao/Fotos/calibracao.jpeg" alt="Processo de Calibração Dinâmica e Modelagem TinyML">
+        <p class="image-caption">Figura: Processo de Calibração Dinâmica e Modelagem TinyML.</p>
+    </div>
+
+    <table>
+        <caption>Tabela 1: Especificação e Quantidades de Componentes do Hardware</caption>
+        <thead>
+            <tr>
+                <th>Componente</th>
+                <th>Função Principal</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ESP32-S3</td>
+                <td>Processamento de Inferência IA (Borda) e Saídas</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ESP32-C3 Super Mini</td>
+                <td>Coleta de Sinais na Luva e Transmissão Sem Fio</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Sensores Flexíveis A12E-10X</td>
+                <td>Captura da Curvatura Articular dos Dedos</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>Módulo MPU-6050 (GY-521)</td>
+                <td>Captura de Dados Inerciais e Orientação 3D</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Amplificador MAX98357A</td>
+                <td>Amplificação de Áudio Digital</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Alto-falante PK230007O00</td>
+                <td>Saída Sonora de Voz Sintetizada</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Display LCD 16x2 com I2C</td>
+                <td>Exibição Visual de Texto</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Baterias de Lítio 3.7V</td>
+                <td>Alimentação do Sistema</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4 Dificuldades enfrentadas</h2>
+    <p>Ao longo do desenvolvimento da luva, o grupo percebeu diversas dificuldades que atrapalharam na construção da luva tradutora. Problemas como fios muito rígidos, dificuldade na implementação da IA, sensores flex muito frágeis e confusão de movimentos foram alguns desses desafios.</p>
+
+    <h3>4.1 Sensores flex</h3>
+    <p>Inicialmente, os sensores flex, muitas vezes frágeis ou com curto fechado, foram grandes obstáculos ao longo de todo o processo. Por eles serem a peça chave na detecção do movimento, necessitava-se que estes fossem bastante precisos para informar a variação realizada ao dobrar os dedos. Entretanto, alguns alteravam mais que outros por motivos desconhecidos ao grupo, o que afetou em alguns sinais, já que, quando se trata da língua de sinais, qualquer mínima mudança nos movimentos representa outra coisa - S e A tem diferença apenas na posição do polegar, ambas tendo o punho fechado -, o que gerou dúvida na detecção por parte do programa.</p>
+
+    <h3>4.2 Queima de Hardwares</h3>
+    <p>O projeto sofreu um forte impacto material devido à queima indesejada de módulos eletrônicos essenciais. Durante a soldagem manual dos pinos, episódios de quebra dos pinos e curtos-circuitos involuntários provocaram falhas permanentes de comunicação nos barramentos lógicos digitais (I&sup2;C e I&sup2;S). Interrompendo respostas aos comandos enviados pela CPU e corrompendo o fluxo contínuo de dados estruturados, esses componentes danificados precisaram ser integralmente descartados e trocados, o que demandou mais tempo e atrapalhou o cronograma inicial de desenvolvimento.</p>
+
+    <h2>5 Desafios Técnicos e Limitações na Implementação da IA</h2>
+    <p>A transição da bancada de testes para a aplicação prática revelou gargalos significativos na implementação da Inteligência Artificial. Embora o modelo tenha alcançado métricas de acurácia promissoras durante a validação no ambiente do Edge Impulse, o desempenho in loco apresentou instabilidades.</p>
+
+    <h3>5.1 Divergência entre Simulação e Inferência em Tempo Real</h3>
+    <div class="image-container">
+        <img src="../../Divulgacao/Fotos/image.png" alt="Divergência entre Simulação e Inferência em Tempo Real">
+        <p class="image-caption">Figura 2: Divergência entre Simulação e Inferência em Tempo Real.</p>
+    </div>
+    <p>Observou-se que o modelo, após ser embarcado no ESP32-S3, não apresentava a mesma confiabilidade verificada nas métricas do Edge Impulse. A inferência em tempo real mostrou-se sensível a variações de ruído elétrico e características mecânicas que não haviam sido devidamente capturadas durante a fase de treinamento. Essa discrepância entre os dados "limpos" da simulação e a realidade do dispositivo vestível forçou a equipe a implementar rotinas de filtragem mais rigorosas para estabilizar a entrada de dados antes da inferência, visando reduzir as classificações incorretas causadas por micro-vibrações dos sensores.</p>
+
+    <h3>5.2 Desafios de Calibração</h3>
+    <p>Outro desafio identificado foi a instabilidade da calibração frente ao transporte e manuseio da luva. Notou-se que, mesmo com o sistema desligado, qualquer movimentação física ou alteração na tensão mecânica do tecido (repuxo) resultava em valores de leitura divergentes ao religar o dispositivo. Como o modelo é dependente desses ajustes, essa "deriva" nos valores de entrada comprometia a acurácia do classificador.</p>
+    <p>Para mitigar esse problema, a equipe desenvolveu uma rotina de autocalibração no firmware de inicialização. Ao ligar a luva, o sistema exige que o usuário mantenha a mão aberta na mesa rente ao corpo por alguns instantes para que o microcontrolador recalcule os limites de <em>offset</em> dos sensores de flexão, garantindo que o sistema se adapte às condições físicas atuais da luva e compensando as alterações sofridas durante o transporte. Entretanto, variações ainda se fazem presentes e melhorias devem ser feitas.</p>
+
+    <h2>6 Resultados e Discussões</h2>
+    <p>Apesar das dificuldades técnicas, o grupo conseguiu montar a luva em sua totalidade e seus testes apresentaram bons resultados. As leituras analógicas foram completamente validadas com alterações mínimas de resposta, conseguindo fazer a conexão com o áudio que respondeu bem às demonstrações realizadas.</p>
+    <p>Em relação à modelagem de Inteligência Artificial, os testes iniciais revelaram uma taxa de erro pontual por matriz de confusão: a rede neural apresentou dificuldades para diferenciar caracteres cujas posições espaciais são semelhantes, tais como as letras “O” e “E”. Esse comportamento tem relação com a falta de resposta na variação dos sensores e na rigidez dos cabos, o que já foi abordado acima, além de não terem um banco de dados de muito volume, variando de 20 a 60 amostras.</p>
+    <p>Para contornar essa barreira analítica, estão sendo adotadas medidas de expansão drástica do conjunto de dados volumétricos e readequação de posicionamento mecânico dos transdutores flexíveis sobre as dobras das articulações dos dedos, buscando ampliar a distância geométrica das features extraídas pelo algoritmo.</p>
+
+    <h2>7 Conclusões e Trabalhos Futuros</h2>
+    <p>O desenvolvimento do SignTalk ratificou a viabilidade técnica e a eficiência de se construir um ecossistema de tradução portátil e de baixo tempo de processamento operando diretamente em arquiteturas embarcadas distribuídas com TinyML. A separação física através do rádio ESP-NOW reduziu o peso na extremidade vestível, preservando a ergonomia sem prejudicar a entrega dos dados de movimentação.</p>
+    <p>Como etapas de desenvolvimento futuras para a consolidação completa do projeto, a equipe planeja:</p>
+    <ul>
+        <li>Ampliar massivamente a coleta do banco de dados para cobrir todo o alfabeto e numerais de Libras;</li>
+        <li>Imprimir uma luva nova com todos os sensores e cabos na parte interna;</li>
+        <li>Desenvolver e confeccionar caixas protetivas ergonômicas (cases) utilizando modelagem e impressão tridimensional (3D) para colocar a bateria e os microprocessadores, mas de modo a ficar mais leve e com menos informação no item móvel do projeto;</li>
+        <li>Alterar os cabos para fios flexíveis para facilitar o movimentos;</li>
+        <li>Mudanças no código para diminuir a variação de quando o dispositivo é muito movido para não perder a calibração préviamente feita.</li>
+    </ul>
+
+    <h2>Referências</h2>
+    <p>[1] KRÁLIK, M.; ŠUPPA, M. <strong>WaveGlove: Transformer-based hand gesture recognition using multiple inertial sensors.</strong> arXiv preprint arXiv:2105.01753v1, 2021.</p>
+    <p>[2] WARDEN, P.; SITUNAYAKE, D. <strong>TinyML: Machine Learning with TensorFlow Lite on Arduino and Ultra-Low-Power Microcontrollers.</strong> 1. ed. Sebastopol: O’Reilly Media, 2019.</p>
+    <p>[3] MONTEIRO, J. <strong>Sistemas Embarcados: Hardware e Firmware na Prática.</strong> 1. ed. Rio de Janeiro: Ed. LTC, 2010.</p>
+
+</body>
+</html>

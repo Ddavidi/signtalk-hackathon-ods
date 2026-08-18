@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação do Projeto - SignTalk</title>
+    
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Premium Dark Theme Colors */
+            --bg-color: #0b1121;
+            --surface-color: #151e32;
+            --surface-hover: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #0ea5e9;
+            --accent-secondary: #8b5cf6;
+            --border-color: #334155;
+            --glass-bg: rgba(21, 30, 50, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        header {
+            position: relative;
+            padding: 80px 20px 60px;
+            text-align: center;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% -20%, rgba(14, 165, 233, 0.15) 0%, transparent 60%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-primary);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        header .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Project Info Card (Glassmorphism) */
+        .info-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            margin-top: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(14, 165, 233, 0.3);
+        }
+
+        .info-item h4 {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .info-item p, .info-item ul {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin: 0;
+            color: #fff;
+        }
+
+        .info-item ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-item ul li {
+            margin-bottom: 4px;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        section h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 35px;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+        }
+
+        .text-block {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Feature Cards */
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 35px 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: var(--surface-hover);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Custom Lists */
+        ul.styled-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        ul.styled-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        ul.styled-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+        }
+        
+        /* Architecture Flow */
+        .architecture-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .flow-step {
+            background: rgba(14, 165, 233, 0.05);
+            border: 1px dashed rgba(14, 165, 233, 0.3);
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .step-number {
+            background: var(--accent-primary);
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <span class="badge">Documentação Oficial</span>
+            <h1>SignTalk</h1>
+            <p class="subtitle">Uma luva tradutora inteligente (Wearable) focada em quebrar barreiras de comunicação, traduzindo gestos de Libras para texto e áudio em tempo real através de Inteligência Artificial na Borda (TinyML).</p>
+            
+            <div class="info-card">
+                <div class="info-item">
+                    <h4>Instituição</h4>
+                    <p>PUC Minas</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Engenharia de Computação</p>
+                </div>
+                <div class="info-item">
+                    <h4>Equipe</h4>
+                    <ul>
+                        <li>Amanda Canizela Guimarães</li>
+                        <li>Ariel Inácio Jordão Coelho</li>
+                        <li>Bernardo Rodrigues Pereira</li>
+                        <li>David Nunes Ribeiro</li>
+                    </ul>
+                </div>
+                <div class="info-item">
+                    <h4>Orientador</h4>
+                    <p>Prof. Ilo Amy Saldanha Rivero</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section>
+            <h2>Visão Geral do Sistema</h2>
+            <p class="text-block">
+                O <strong>SignTalk</strong> é construído sob uma arquitetura distribuída e sem fio, utilizando processamento <em>Edge Computing</em>. O sistema foi dividido em duas unidades principais para garantir a ergonomia da luva: um <strong>Nó Transmissor</strong> (a luva propriamente dita) e uma <strong>Base Receptora</strong> (onde ocorre o processamento neural e a saída de som).
+            </p>
+            
+            <div style="text-align: center; margin: 40px 0; border-radius: 16px;">
+                <img src="../Fotos/signtalk_luvas.jpeg" alt="Foto das luvas SignTalk em uso" style="max-width: 100%; max-height: 450px; width: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            </div>
+
+            <div class="architecture-flow">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div><strong>Coleta de Dados:</strong> A luva realiza a leitura contínua da flexão dos dedos e movimentação espacial da mão, empacotando os sinais em structs e transmitindo via rádio (protocolo ESP-NOW).</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div><strong>Comunicação ESP-NOW:</strong> Protocolo de rádio de baixíssima latência envia os dados brutos da luva diretamente para a base sem necessidade de um roteador externo.</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div><strong>Inferência TinyML:</strong> A Base Receptora hospeda o modelo treinado. Ela captura a janela de movimentos, extrai características espaciais/temporais e adivinha qual é o gesto correspondente (Classificação).</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div><strong>Saída de Áudio:</strong> Após a tradução do gesto, a base envia o arquivo de áudio decodificado digitalmente para um amplificador e caixa de som externa.</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Componentes de Hardware</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Microcontroladores</h3>
+                    <p>Processadores poderosos de baixo consumo que executam o código C/C++ do sistema.</p>
+                    
+                    <div style="text-align: center; margin: 15px 0; padding: 5px; border-radius: 12px;">
+                        <img src="../Fotos/esp32%20s3.jpeg" alt="Microcontrolador ESP32-S3" style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
+                    </div>
+                    <ul class="styled-list">
+                        <li><strong>ESP32-S3:</strong> "O Cérebro" localizado na base receptora, projetado para tarefas complexas de IA e decodificação de áudio digital.</li>
+                        <li><strong>ESP32-C3:</strong> Minúsculo nó coletor que fica na luva. Escolhido pelo seu tamanho reduzido e integração com a antena sem fio.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Sensores</h3>
+                    <p>A "Mão Virtual" — responsáveis por digitalizar a intenção mecânica do usuário em sinais elétricos.</p>
+                    
+                    <div style="text-align: center; margin: 15px 0; padding: 5px; border-radius: 12px;">
+                        <img src="../Fotos/signtalk_teste_flexor.jpeg" alt="Testes dos flexores" style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
+                    </div>
+                    <ul class="styled-list">
+                        <li><strong>10x Sensores Flex A12E-10X:</strong> Fixados nas articulações para capturar o nível de curvatura dos dedos (via conversores ADC e resistores Pull-down 10kΩ).</li>
+                        <li><strong>MPU-6050 (GY-521):</strong> Acelerômetro e Giroscópio I2C para orientar a inclinação tridimensional do pulso do usuário.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Interface de Saída e Energia</h3>
+                    <p>Os hardwares responsáveis por tornar a tradução inteligível para as demais pessoas.</p>
+
+                    <div style="text-align: center; margin: 15px 0; padding: 5px; border-radius: 12px;">
+                        <img src="../Fotos/signtalk_teste_speaker.jpeg" alt="Testes do speaker" style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
+                    </div>
+                    <ul class="styled-list">
+                        <li><strong>MAX98357A (Módulo I2S):</strong> Amplificador que recebe áudio puramente digital do ESP32 para evitar ruídos e chiados analógicos.</li>
+                        <li><strong>Alto-falante (PK230007O00):</strong> Reprodução clara do *Text-to-Speech*.</li>
+                        <li><strong>Display LCD 16x2 I2C:</strong> Com backlight azul, responsável por mostrar na tela a letra ou palavra traduzida.</li>
+                        <li><strong>Baterias Lítio 3.7V:</strong> Garantem a portabilidade total do sistema (vestível).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Stack de Software e Ferramentas</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Edge Impulse & TinyML</h3>
+                    <p>Plataforma líder em *Machine Learning* para sistemas embarcados.</p>
+                    <ul class="styled-list">
+                        <li><strong>Treinamento:</strong> Usamos o Edge Impulse para coletar amostras rotuladas (Gestos), extrair *features* em janelas de tempo e treinar uma Rede Neural Profunda (Classificação Keras).</li>
+                        <li><strong>Deploy:</strong> O modelo treinado é compilado nativamente para uma biblioteca C++ leve o suficiente para rodar offline direto no processador do ESP32-S3.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Automação com Python e CLI</h3>
+                    <p>Scripts criados sob medida pela equipe para otimizar a criação do *Dataset* de treinamento.</p>
+                    <ul class="styled-list">
+                        <li><strong>Coleta Via Script:</strong> O arquivo <code>coleta_sign_talk.py</code> foi desenvolvido para ler a porta Serial, automatizar pausas de respiro para o usuário e gerar CSVs das luvas de forma eficiente.</li>
+                        <li><strong>Edge Impulse CLI:</strong> Uso de terminal (<code>edge-impulse-uploader</code>) para fazer envios em lote dos arquivos CSV rotulados direto para a nuvem de treinamento.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Projeto de Sistemas Embarcados © 2026 PUC Minas.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

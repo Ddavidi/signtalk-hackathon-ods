@@ -153,8 +153,6 @@ signtalk-hackathon-ods/
 | **Bernardo Rodrigues Pereira** | Engenharia de Computação, PUC Minas |
 | **David Nunes Ribeiro** | Engenharia de Computação, PUC Minas |
 
-**Orientador:** Prof. Ilo Amy Saldanha Rivero
-
 > 📄 [Mais sobre a equipe](docs/equipe.md)
 
 ---

@@ -14,12 +14,6 @@ Estudante de Engenharia de Computação na PUC Minas.
 ### David Nunes Ribeiro
 Estudante de Engenharia de Computação na PUC Minas.
 
----
-
-## Orientador
-
-**Prof. Ilo Amy Saldanha Rivero**
-PUC Minas
 
 ---
 

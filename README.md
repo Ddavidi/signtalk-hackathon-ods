@@ -151,7 +151,7 @@ signtalk-hackathon-ods/
 | **Amanda Canizela Guimarães** | Engenharia de Computação, PUC Minas |
 | **Ariel Inácio Jordão Coelho** | Engenharia de Computação, PUC Minas |
 | **Bernardo Rodrigues Pereira** | Engenharia de Computação, PUC Minas |
-| **David Nunes Ribeiro** | Líder / Representante da Equipe |
+| **David Nunes Ribeiro** | Coordenador da Equipe, Engenharia de Computação, PUC Minas |
 
 > 📄 [Mais sobre a equipe](docs/equipe.md)
 

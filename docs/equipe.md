@@ -12,7 +12,7 @@ Estudante de Engenharia de Computação na PUC Minas.
 Estudante de Engenharia de Computação na PUC Minas.
 
 ### David Nunes Ribeiro
-Líder e Representante da Equipe. Estudante de Engenharia de Computação na PUC Minas.
+Coordenador da Equipe. Estudante de Engenharia de Computação na PUC Minas.
 
 
 ---

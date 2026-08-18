@@ -10,7 +10,7 @@
 [![ODS 4](https://img.shields.io/badge/ODS%204-Educa%C3%A7%C3%A3o%20de%20Qualidade-C5192D?style=for-the-badge)](https://brasil.un.org/pt-br/sdgs/4)
 [![ODS 9](https://img.shields.io/badge/ODS%209-Inova%C3%A7%C3%A3o%20e%20Infraestrutura-FD6925?style=for-the-badge)](https://brasil.un.org/pt-br/sdgs/9)
 
-[![Vídeo Demo](https://img.shields.io/badge/▶%20Assistir%20Demo-YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=ag-5S937Mlc)
+[![Vídeo Pitch](https://img.shields.io/badge/▶%20Assistir%20Pitch-YouTube-FF0000?style=for-the-badge&logo=youtube)](https://youtu.be/l9FkLGi2Y_s)
 [![Licença](https://img.shields.io/badge/Licen%C3%A7a-CC--BY--4.0-blue?style=for-the-badge)](LICENSE)
 
 ---
@@ -82,7 +82,7 @@ Aplicamos **Inteligência Artificial na Borda (TinyML)** em microcontroladores d
 
 ## 🎥 Demonstração
 
-[![Vídeo do Protótipo](https://img.youtube.com/vi/ag-5S937Mlc/maxresdefault.jpg)](https://www.youtube.com/watch?v=ag-5S937Mlc)
+[![Vídeo Pitch e Demonstração](https://img.youtube.com/vi/l9FkLGi2Y_s/maxresdefault.jpg)](https://youtu.be/l9FkLGi2Y_s)
 
 > Clique na imagem para assistir à demonstração do protótipo funcionando.
 

@@ -27,7 +27,7 @@ Curso de Engenharia de Computação
 ## Contato
 
 Para dúvidas, sugestões ou parcerias:
-- **Email:** arielijordao@gmail.com
+- **Email:** ddnr03@gmail.com
 
 ---
 
